@@ -1,4 +1,8 @@
-[:div "Hello "
-   [:p.text-blue-500 " world!"]]
+[:div
+  [:div "Hello "
+    [:p.text-blue-500 " world!"]] 
+  [user/customer {:first "Walter" :last "Schlemmel"}]
+ ]
+
 
 

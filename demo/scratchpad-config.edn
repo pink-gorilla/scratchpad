@@ -3,7 +3,7 @@
  :goldly {; build
           :lazy true
           ; run-time
-          :autoload-cljs-dir []
+          :autoload-cljs-dir ["demoapp"]
           :routes {:app {"" :scratchpad}
                    :api {"scratchpad" {:get :scratchpad/get
                                        :post :scratchpad/set}
