@@ -62,7 +62,7 @@
                  :config ["webly/config.edn" "goldly/config.edn" "scratchpad-config.edn"]}}
 
   ; RUN SERVICES (keep running)
-  :demo
+  :goldly-run
   {:extra-paths ["demo"]
    :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.512"
                                              :exclusions [org.pinkgorilla/viz-spec]} ; this project

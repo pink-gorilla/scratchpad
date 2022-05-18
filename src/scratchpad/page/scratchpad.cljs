@@ -1,3 +1,10 @@
+(ns scratchpad.page.scratchpad
+  (:require
+   [r]
+   [rf]
+   [user :refer [add-page info]]
+   [scratchpad.vizspec :refer [render-vizspec]]))
+
 (def empty-scratchpad-hiccup
   [:div ;.bg-blue-500.h-24.pt-3
    [:blockquote.text-xl.italic.ml-10.text-red-600 "Goldly Scratchpad"]

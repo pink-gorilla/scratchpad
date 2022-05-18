@@ -1,4 +1,7 @@
-
+(ns scratchpad.vizspec
+  (:require
+   [pinkie]
+   [user :refer [resolve-symbol-sci]]))
 
 (defn safe-resolve [s]
   (try
