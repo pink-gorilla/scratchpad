@@ -1,6 +1,6 @@
 (ns scratchpad.vizspec
   (:require
-   [pinkie]
+   [viz]
    [user :refer [resolve-symbol-sci]]))
 
 (defn safe-resolve [s]
@@ -15,6 +15,6 @@
   ;(println "first item in vec:" (first h) "type: " (type (first h)))
   ;(println "render fn:" (get-symbol-value (first h)))
   ;(println "now showing..")
-  (let [h-fn (pinkie/show safe-resolve h)]
+  (let [h-fn (viz/show safe-resolve h)]
     ;(println "rendered spec: " (pr-str h-fn))
     h-fn))
