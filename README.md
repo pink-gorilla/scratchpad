@@ -10,10 +10,12 @@
 ```
 clojure -X:goldly-run
 ```
+
 Navigate Browser to localhost:8080
 
 In another terminal:
-```
-./script/scatchpad-set.sh
-```
+You can get and set the scratchpad data via http api.
+
+Execute `./script/scratchpad-get.sh` or `./script/scratchpad-set.sh`
+
 
