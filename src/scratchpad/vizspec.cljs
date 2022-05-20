@@ -1,11 +1,11 @@
 (ns scratchpad.vizspec
   (:require
    [viz]
-   [user :refer [resolve-symbol-sci]]))
+   [user]))
 
 (defn safe-resolve [s]
   (try
-    (resolve-symbol-sci s)
+    (user/resolve-symbol-sci s)
     (catch :default e
       (println "renderer not found: " s)
       nil)))

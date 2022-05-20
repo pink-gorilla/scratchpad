@@ -2,8 +2,8 @@
   (:require
    [r]
    [rf]
-   [user :refer [add-page info println]]
-   [scratchpad.vizspec :refer [render-vizspec]]))
+   [user]
+   [scratchpad.vizspec]))
 
 (def empty-scratchpad-hiccup
   [:div ;.bg-blue-500.h-24.pt-3
@@ -24,7 +24,7 @@
   (reset! scratchpad-hiccup-raw empty-scratchpad-hiccup))
 
 (defn show-hiccup [h & args]
-  (let [h-fn (render-vizspec h)]
+  (let [h-fn (scratchpad.vizspec/render-vizspec h)]
     (reset! scratchpad-hiccup h-fn)
     (reset! scratchpad-hiccup-raw h)))
 
@@ -51,18 +51,19 @@
    [:p.text-xl.text-blue-500.mt-3.mb-3 "hiccup"]
    [:div.bg-gray-300.overflow-scroll.w-full (pr-str @scratchpad-hiccup-raw)]])
 
-(add-page scratchpad :scratchpad)
+(user/add-page scratchpad :scratchpad)
 
 (defn process-scratchpad-op [{:keys [op hiccup code] :as msg}]
   (case op
     :clear (clear-scratchpad)
     :show  (show-hiccup hiccup)
-    (println "unknown viewer op:" op)))
+    ;(println "unknown viewer op:" op)
+    ))
 
 (rf/reg-event-fx
  :scratchpad/msg
  (fn [{:keys [db]} [_ msg]]
-   (println "scratchpad msg received: " msg)
+   ;(println "scratchpad msg received: " msg)
    (process-scratchpad-op msg)
    nil))
 
@@ -70,6 +71,6 @@
  :scratchpad/get
  (fn [{:keys [db]} [_ msg]]
    (let [h (or @scratchpad-hiccup-raw [:div "empty scratchpad"])]
-     (info "scratchpad get:" msg)
+     ;(info "scratchpad get:" msg)
      (rf/dispatch [:goldly/send :scratchpad/state h]))
    nil))
