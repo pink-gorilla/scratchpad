@@ -6,11 +6,18 @@
 (show! [:p "hello, demo!"])
 
 
+
 ; evaled expression inside the hiccup.
 (show! [:p "Multiplication result: " (* 7 7)])
 
+
+(show! ['user/customer {:first "Walter" :last "Schlemmel"}])
+
+
 ; code in highlightjs
-(show! ['user/codemirror "(println 5) ; this is code"])
+; broken.
+;(show! ['user/codemirror "(println 5) ; this is code"])
+
 
 ; show pinkie tags!
 (show! ['user/clock])

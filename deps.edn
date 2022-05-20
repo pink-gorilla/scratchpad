@@ -3,7 +3,6 @@
          ]
  :deps {org.clojure/clojure {:mvn/version  "1.10.3"}
         org.pinkgorilla/pinkie {:mvn/version "0.3.14"} ; render viz-spec
-        org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; for reagent
         }
 
  :aliases
@@ -51,20 +50,10 @@
    :main-opts ["-m" "applied-science.deps-library"]}
 
 
-  ; BUILD BUNDLE (then exit)
-  #_:build
-  #_{:extra-paths ["demo"]
-     :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.512"
-                                          :exclusions [org.pinkgorilla/viz-spec]} ; this project
-                  }
-     :exec-fn goldly.app.build/goldly-build
-     :exec-args {:profile "npm-install"
-                 :config ["webly/config.edn" "goldly/config.edn" "scratchpad-config.edn"]}}
-
   ; RUN SERVICES (keep running)
   :goldly-run
   {:extra-paths ["demo"]
-   :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.512"
+   :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.531"
                                              :exclusions [org.pinkgorilla/viz-spec]} ; this project
                 }
    :exec-fn modular.system/start!

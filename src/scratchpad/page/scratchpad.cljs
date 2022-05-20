@@ -2,7 +2,7 @@
   (:require
    [r]
    [rf]
-   [user :refer [add-page info]]
+   [user :refer [add-page info println]]
    [scratchpad.vizspec :refer [render-vizspec]]))
 
 (def empty-scratchpad-hiccup

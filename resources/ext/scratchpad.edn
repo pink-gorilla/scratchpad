@@ -1,9 +1,4 @@
 {:name "scratchpad"
- ; build
- :lazy false  ; we dont have any code, lazy fucks up size report
- :cljs-namespace []
- :cljs-ns-bindings {}
- :cljs-bindings {}
  ; run
  :autoload-cljs-dir ["scratchpad"
                      "scratchpad/page"]
