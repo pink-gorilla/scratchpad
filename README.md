@@ -1,4 +1,4 @@
-#scratchpad [![GitHub Actions status |pink-gorilla/viz-spec](https://github.com/pink-gorilla/viz-spec/workflows/CI/badge.svg)](https://github.com/pink-gorilla/viz-spec/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/viz-spec.svg)](https://clojars.org/org.pinkgorilla/viz-spec)
+#scratchpad [![GitHub Actions status |pink-gorilla/scratchpad](https://github.com/pink-gorilla/scratchpad/workflows/CI/badge.svg)](https://github.com/pink-gorilla/scratchpad/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/scratchpad.svg)](https://clojars.org/org.pinkgorilla/scratchpad)
 
 
 ## End-Users
