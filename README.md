@@ -8,7 +8,7 @@
 ## Demo
 
 ```
-clojure -X:goldly-run
+clojure -X:goldly
 ```
 
 Navigate Browser to localhost:8080

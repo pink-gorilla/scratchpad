@@ -2,7 +2,7 @@
          "resources" ; extension , resources used in devtools ui
          ]
  :deps {org.clojure/clojure {:mvn/version  "1.10.3"}
-        org.pinkgorilla/pinkie {:mvn/version "0.3.14"} ; render viz-spec
+        org.pinkgorilla/pinkie {:mvn/version "0.3.15"} ; render viz-spec
         }
 
  :aliases
@@ -51,7 +51,7 @@
 
 
   ; RUN SERVICES (keep running)
-  :goldly-run
+  :goldly
   {:extra-paths ["demo"]
    :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.531"
                                              :exclusions [org.pinkgorilla/viz-spec]} ; this project
