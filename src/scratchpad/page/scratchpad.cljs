@@ -1,9 +1,9 @@
 (ns scratchpad.page.scratchpad
   (:require
-   [r]
-   [rf]
-   [user]
-   [scratchpad.vizspec]))
+   [reagent.core :as r]
+   [re-frame.core :as rf]
+   [scratchpad.vizspec :refer [render-vizspec]]
+   [goldly.page :as page]))
 
 (def empty-scratchpad-hiccup
   [:div ;.bg-blue-500.h-24.pt-3
@@ -24,7 +24,7 @@
   (reset! scratchpad-hiccup-raw empty-scratchpad-hiccup))
 
 (defn show-hiccup [h & args]
-  (let [h-fn (scratchpad.vizspec/render-vizspec h)]
+  (let [h-fn (render-vizspec h)]
     (reset! scratchpad-hiccup h-fn)
     (reset! scratchpad-hiccup-raw h)))
 
@@ -51,7 +51,7 @@
    [:p.text-xl.text-blue-500.mt-3.mb-3 "hiccup"]
    [:div.bg-gray-300.overflow-scroll.w-full (pr-str @scratchpad-hiccup-raw)]])
 
-(user/add-page scratchpad :scratchpad)
+(page/add scratchpad :scratchpad)
 
 (defn process-scratchpad-op [{:keys [op hiccup code] :as msg}]
   (case op
