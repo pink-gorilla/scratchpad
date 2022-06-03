@@ -2,8 +2,8 @@
   (:require
    [reagent.core :as r]
    [re-frame.core :as rf]
-   [scratchpad.vizspec :refer [render-vizspec]]
-   [goldly.page :as page]))
+   [goldly.page :as page]
+   [scratchpad.vizspec :refer [render-vizspec]]))
 
 (def empty-scratchpad-hiccup
   [:div ;.bg-blue-500.h-24.pt-3
@@ -19,11 +19,11 @@
 (defonce scratchpad-hiccup-raw
   (r/atom empty-scratchpad-hiccup))
 
-(defn clear-scratchpad [& args]
+(defn clear-scratchpad [& _args]
   (reset! scratchpad-hiccup empty-scratchpad-hiccup)
   (reset! scratchpad-hiccup-raw empty-scratchpad-hiccup))
 
-(defn show-hiccup [h & args]
+(defn show-hiccup [h & _args]
   (let [h-fn (render-vizspec h)]
     (reset! scratchpad-hiccup h-fn)
     (reset! scratchpad-hiccup-raw h)))
@@ -53,7 +53,7 @@
 
 (page/add scratchpad :scratchpad)
 
-(defn process-scratchpad-op [{:keys [op hiccup code] :as msg}]
+(defn process-scratchpad-op [{:keys [op hiccup _code] :as _msg}]
   (case op
     :clear (clear-scratchpad)
     :show  (show-hiccup hiccup)
@@ -62,14 +62,14 @@
 
 (rf/reg-event-fx
  :scratchpad/msg
- (fn [{:keys [db]} [_ msg]]
+ (fn [{:keys [_db]} [_ msg]]
    ;(println "scratchpad msg received: " msg)
    (process-scratchpad-op msg)
    nil))
 
 (rf/reg-event-fx
  :scratchpad/get
- (fn [{:keys [db]} [_ msg]]
+ (fn [{:keys [_db]} [_ _msg]]
    (let [h (or @scratchpad-hiccup-raw [:div "empty scratchpad"])]
      ;(info "scratchpad get:" msg)
      (rf/dispatch [:goldly/send :scratchpad/state h]))

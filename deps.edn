@@ -2,7 +2,7 @@
          "resources" ; extension , resources used in devtools ui
          ]
  :deps {org.clojure/clojure {:mvn/version  "1.10.3"}
-        org.pinkgorilla/pinkie {:mvn/version "0.3.15"} ; render viz-spec
+        org.pinkgorilla/pinkie {:mvn/version "0.3.16"} ; render viz-spec
         }
 
  :aliases
