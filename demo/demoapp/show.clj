@@ -1,20 +1,23 @@
-(ns demoapp.show
-  (:require
-   [scratchpad.core :refer [show! clear!]]))
+(ns demoapp.show)
 
-(show! [:p "hello, demo!"])
+(tap>
+ ^:R [:p "hello, world!"])
 
 ; evaled expression inside the hiccup.
-(show! [:p "Multiplication result: " (* 7 7)])
+(tap> ^:R
+      [:p "Multiplication result: " (* 7 7)])
 
-(show! ['user/customer {:first "Walter" :last "Schlemmel"}])
+(tap> ^{:render-fn 'demoapp.ui.customer/customer}
+   {:first "Walter" :last "Schlemmel"})
 
 ; code in highlightjs
 ; broken.
 ;(show! ['ui.codemirror/codemirror "(println 5) ; this is code"])
 
 ; show pinkie tags!
-(show! ['ui.clock/clock])
+(tap> ^:reagent ['ui.clock/clock])
 
 ; show image (in static resource) 
-(show! [:img {:src "/r/sun.png"}])
+(tap> ^:R [:img {:src "/r/sun.png"}])
+
+(tap> ['ui.clock/clock])

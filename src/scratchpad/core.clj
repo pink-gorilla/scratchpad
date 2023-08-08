@@ -13,7 +13,7 @@
 (defn show! [h]
   (info "sending to scratchpad: " h)
   (send-all! [:scratchpad/msg {:op :show
-                               :hiccup h}])
+                               :payload h}])
   h)
 
 (defn get! []

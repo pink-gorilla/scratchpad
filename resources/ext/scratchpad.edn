@@ -1,5 +1,5 @@
-{:name "scratchpad"
+{:name "scratchpad2"
  ; run
- :autoload-cljs-dir ["scratchpad"
-                     "scratchpad/page"]
- :autoload-clj-ns [scratchpad.handler]}
+ :autoload-cljs-dir ["scratchpad/page"]
+ :autoload-clj-ns [scratchpad.handler
+                   scratchpad.tap]}

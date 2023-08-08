@@ -3,30 +3,28 @@
    [reagent.core :as r]
    [re-frame.core :as rf]
    [goldly.page :as page]
-   [scratchpad.vizspec :refer [render-vizspec]]))
+   ;[reval.goldly.viz.show :as viz]
+   [scratchpad.page.show :as viz]))
 
-(def empty-scratchpad-hiccup
-  [:div ;.bg-blue-500.h-24.pt-3
-   [:blockquote.text-xl.italic.ml-10.text-red-600 "Goldly Scratchpad"]
-   [:h1.text-xl "scratchpad is empty!"]])
+(def empty-data
+  {:render-fn 'reval.goldly.viz.render-fn/hiccup
+   :data [:div ;.bg-blue-500.h-24.pt-3
+          [:blockquote.text-xl.italic.ml-10.text-red-600 "Goldly Scratchpad"]
+          [:h1.text-xl "scratchpad is empty!"]]})
 
-(def demo-hiccup
-  [:p.bg-red-300 "demo123"])
+(def demo-data
+  {:render-fn 'reval.goldly.viz.render-fn/hiccup
+   :data [:p.bg-red-300 "demo123"]})
 
-(defonce scratchpad-hiccup
-  (r/atom empty-scratchpad-hiccup))
+(defonce state
+  (r/atom empty-data))
 
-(defonce scratchpad-hiccup-raw
-  (r/atom empty-scratchpad-hiccup))
+(defn show-new-data [{:keys [render-fn data]}]
+  (println "showing data: render-fn: " render-fn " data: " data)
+  (reset! state {:render-fn render-fn :data data}))
 
 (defn clear-scratchpad [& _args]
-  (reset! scratchpad-hiccup empty-scratchpad-hiccup)
-  (reset! scratchpad-hiccup-raw empty-scratchpad-hiccup))
-
-(defn show-hiccup [h & _args]
-  (let [h-fn (render-vizspec h)]
-    (reset! scratchpad-hiccup h-fn)
-    (reset! scratchpad-hiccup-raw h)))
+  (show-new-data empty-data))
 
 ; eval
 
@@ -39,26 +37,26 @@
    [:div.pt-5
     [:span.text-xl.text-blue-500.text-bold.mr-4 "scratchpad"]
     [:button.bg-gray-400.m-1 {:on-click clear-scratchpad} "clear"]
-    [:button.bg-gray-400.m-1 {:on-click #(show-hiccup demo-hiccup)} "demo"]]
-   ; hiccup
+    [:button.bg-gray-400.m-1 {:on-click #(show-new-data demo-data)} "demo"]]
+   ; rendered
    [:p.text-xl.text-blue-500.mt-3.mb-3 "output"]
    [:div#scratchpadtest]
    [:div.w-full
-    @scratchpad-hiccup]
+    [viz/show-data (:render-fn @state)
+     (:data @state)]]
    ; separator
    [:hr.mt-5]
-   ; hiccup (source)
-   [:p.text-xl.text-blue-500.mt-3.mb-3 "hiccup"]
-   [:div.bg-gray-300.overflow-scroll.w-full (pr-str @scratchpad-hiccup-raw)]])
+   ; source
+   [:p.text-xl.text-blue-500.mt-3.mb-3 "render-fn: " (str (:render-fn @state))]
+   [:div.bg-gray-300.overflow-scroll.w-full (pr-str (:data @state))]])
 
 (page/add scratchpad :scratchpad)
 
-(defn process-scratchpad-op [{:keys [op hiccup _code] :as _msg}]
+(defn process-scratchpad-op [{:keys [op payload] :as _msg}]
   (case op
     :clear (clear-scratchpad)
-    :show  (show-hiccup hiccup)
-    ;(println "unknown viewer op:" op)
-    ))
+    :show  (show-new-data payload)
+    (println "unknown scratchpad op:" (str op))))
 
 (rf/reg-event-fx
  :scratchpad/msg
@@ -70,7 +68,5 @@
 (rf/reg-event-fx
  :scratchpad/get
  (fn [{:keys [_db]} [_ _msg]]
-   (let [h (or @scratchpad-hiccup-raw [:div "empty scratchpad"])]
-     ;(info "scratchpad get:" msg)
-     (rf/dispatch [:goldly/send :scratchpad/state h]))
+   (rf/dispatch [:goldly/send :scratchpad/state @state])
    nil))
