@@ -1,6 +1,6 @@
 (ns scratchpad.core
   (:require
-   [taoensso.timbre :refer [info]]
+   [taoensso.timbre :refer [debug info]]
    [clojure.core.async :refer [go chan >! <!! >!! alts! timeout]]
    [modular.ws.msg-handler :refer [-event-msg-handler]]
    [modular.ws.core :refer [send-all! send-response connected-uids]]))
@@ -11,7 +11,7 @@
   nil)
 
 (defn show! [h]
-  (info "sending to scratchpad: " h)
+  (debug "sending to scratchpad: " h)
   (send-all! [:scratchpad/msg {:op :show
                                :payload h}])
   h)

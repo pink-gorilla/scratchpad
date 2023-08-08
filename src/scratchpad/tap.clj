@@ -9,7 +9,7 @@
   (spit "event.log" (str x \newline) :append true))
 
 (defn to-scratchpad [x]
-  (info "sending to scratchpad..")
+  (debug "sending to scratchpad..")
   (let [viz (value->data x)]
     (scratchpad.core/show! viz)))
 
@@ -21,7 +21,7 @@
         tap  (:tap scratchpad)]
 
     (if tap
-      (do (warn "Adding Tap to send to clojure ...")
+      (do (warn "Adding Tap Listener that will send data to scratchpad ...")
           (add-tap to-scratchpad))
       (warn "Scratchpad tap is disabled. To enable {:scratchpad :tap} true"))))
 
