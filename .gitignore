@@ -23,3 +23,7 @@ goldly_bindings_generated.cljs
 .webly
 .clj-kondo
 .calva
+*~
+\#*\#
+.\#*
+.~*
