@@ -53,7 +53,7 @@
   ; RUN SERVICES (keep running)
   :goldly
   {:extra-paths ["demo"]
-   :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.584"
+   :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.610"
                                              :exclusions [org.pinkgorilla/viz-spec]} ; this project
                 }
    :exec-fn modular.system/start!

@@ -6,7 +6,6 @@
    [ring.util.response :as res]
    [ring.util.request :refer  [body-string]]
    [modular.webserver.middleware.api :refer [wrap-api-handler]]
-   [modular.webserver.handler.registry :refer [add-ring-handler]]
    [scratchpad.core :as scratchpad]))
 
 (defn scratchpad-get-handler
@@ -31,5 +30,4 @@
 (def wrapped-scratchpad-get-handler (wrap-api-handler scratchpad-get-handler))
 (def wrapped-scratchpad-set-handler (wrap-api-handler scratchpad-set-handler))
 
-(add-ring-handler :scratchpad/get wrapped-scratchpad-get-handler)
-(add-ring-handler :scratchpad/set wrapped-scratchpad-set-handler)
+
