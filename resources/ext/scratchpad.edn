@@ -2,4 +2,8 @@
  ; run
  :autoload-cljs-dir ["scratchpad/page"]
  :autoload-clj-ns [scratchpad.handler
-                   scratchpad.tap]}
+                   scratchpad.tap]
+ :api-routes {"scratchpad" {:get 'scratchpad.handler/wrapped-scratchpad-get-handler
+                            :post 'scratchpad.handler/wrapped-scratchpad-set-handler}}
+ 
+ }

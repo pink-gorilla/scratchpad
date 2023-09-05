@@ -28,5 +28,8 @@
     (res/response {:message "src sent to scratchpad."})
     #_(res/bad-request save-result)))
 
-(add-ring-handler :scratchpad/get (wrap-api-handler scratchpad-get-handler))
-(add-ring-handler :scratchpad/set (wrap-api-handler scratchpad-set-handler))
+(def wrapped-scratchpad-get-handler (wrap-api-handler scratchpad-get-handler))
+(def wrapped-scratchpad-set-handler (wrap-api-handler scratchpad-set-handler))
+
+(add-ring-handler :scratchpad/get wrapped-scratchpad-get-handler)
+(add-ring-handler :scratchpad/set wrapped-scratchpad-set-handler)
