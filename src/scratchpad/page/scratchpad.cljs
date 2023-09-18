@@ -2,7 +2,6 @@
   (:require
    [reagent.core :as r]
    [re-frame.core :as rf]
-   [goldly.page :as page]
    ;[reval.goldly.viz.show :as viz]
    [scratchpad.page.show :as viz]))
 
@@ -31,7 +30,7 @@
 (defonce scratchpad-show
   (r/atom false))
 
-(defn scratchpad []
+(defn scratchpad [_route]
   [:div.w-full.h-full.m-0.p-5  ;[:div.bg-green-300.w-screen.h-screen.overflow-scroll
    ; header
    [:div.pt-5
@@ -49,8 +48,6 @@
    ; source
    [:p.text-xl.text-blue-500.mt-3.mb-3 "render-fn: " (str (:render-fn @state))]
    [:div.bg-gray-300.overflow-scroll.w-full (pr-str (:data @state))]])
-
-(page/add scratchpad :scratchpad)
 
 (defn process-scratchpad-op [{:keys [op payload] :as _msg}]
   (case op

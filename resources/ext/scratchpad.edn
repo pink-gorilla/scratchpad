@@ -1,9 +1,13 @@
 {:name "scratchpad"
  ; run
- :autoload-cljs-dir ["scratchpad/page"]
+ ;:autoload-cljs-dir ["scratchpad/page"]
  :autoload-clj-ns [scratchpad.handler
                    scratchpad.tap]
  :api-routes {"scratchpad" {:get scratchpad.handler/wrapped-scratchpad-get-handler
                             :post scratchpad.handler/wrapped-scratchpad-set-handler}}
- 
+ :cljs-routes  {"devtools/scratchpad" scratchpad.page.scratchpad/scratchpad}
+ :sci-cljs-ns [scratchpad.page.scratchpad
+               scratchpad.page.show]
  }
+
+ 
