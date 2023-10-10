@@ -29,9 +29,6 @@
 
 (comment
 
-  (+ 5 5)
-  (nb-collections)
-
   (-> 3
       value->data
       keys)
